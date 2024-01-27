@@ -1,0 +1,47 @@
+package com.example.fishery;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.MenuBar;
+
+public class Controller2_fishvariety {
+
+    @FXML
+    private MenuBar freshwater_fish;
+
+    @FXML
+    private MenuBar seafish;
+
+    @FXML
+    void murrel(ActionEvent event) {
+        HelloApplication.stage_var.setScene(HelloApplication.murrel);
+    }
+    @FXML
+    void pomfretfish(ActionEvent event) {
+        HelloApplication.stage_var.setScene(HelloApplication.pomfret);
+    }
+
+    @FXML
+    void rohu(ActionEvent event) {
+        HelloApplication.stage_var.setScene(HelloApplication.rohu);
+    }
+
+    @FXML
+    void seerfish(ActionEvent event) {
+        HelloApplication.stage_var.setScene(HelloApplication.seerfish);
+    }
+
+    @FXML
+    void snapper(ActionEvent event) {
+        HelloApplication.stage_var.setScene(HelloApplication.snapper);
+    }
+
+    @FXML
+    void tilapia(ActionEvent event) {
+        HelloApplication.stage_var.setScene(HelloApplication.tilapia);
+    }
+
+    public void goto_login(ActionEvent event) {
+        HelloApplication.stage_var.setScene(HelloApplication.login);
+    }
+}
