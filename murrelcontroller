@@ -1,0 +1,20 @@
+package com.example.fishery;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+
+public class murrelcontroller {
+
+    @FXML
+    private Button back;
+
+    @FXML
+    void goto_fishvariety(ActionEvent event) {
+        HelloApplication.stage_var.setScene(HelloApplication.fish_vareity);
+    }
+
+    public void buy(ActionEvent event) {
+        HelloApplication.stage_var.setScene(HelloApplication.payment);
+    }
+}
