@@ -1,0 +1,15 @@
+package com.example.fishery;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+
+public class paycontroller {
+    @FXML
+    void pay(ActionEvent event) {
+        HelloApplication.stage_var.setScene(HelloApplication.payment_success);
+    }
+
+    public void goto_fishvariety(ActionEvent event) {
+        HelloApplication.stage_var.setScene(HelloApplication.fish_vareity);
+    }
+}
