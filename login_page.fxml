@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="736.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fishery.Controller1_login">
+   <children>
+      
+      <ImageView fitHeight="493.0" fitWidth="432.0" layoutX="306.0" layoutY="-5.0" opacity="0.52" pickOnBounds="true">
+         <image>
+            <Image url="@login.jpeg" />
+         </image>
+         <effect>
+            <ColorAdjust />
+         </effect>
+      </ImageView>
+      <Button layoutX="481.0" layoutY="330.0" mnemonicParsing="false" onAction="#goto_fishvariety" prefHeight="25.0" prefWidth="85.0" text="Login" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Button>
+      <HBox alignment="CENTER" prefHeight="487.0" prefWidth="306.0" style="-fx-background-color: lightblue;">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fishery management system " textAlignment="CENTER" wrappingWidth="212.98988342285156">
+               <font>
+                  <Font name="System Bold Italic" size="27.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <PasswordField fx:id="passwordField" layoutX="417.0" layoutY="256.0" prefHeight="31.0" prefWidth="212.0" promptText="Password" />
+      <TextField fx:id="usernameField" layoutX="417.0" layoutY="194.0" prefHeight="31.0" prefWidth="212.0" promptText="Username or email" />
+      <Text layoutX="426.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account..?">
+         <font>
+            <Font name="System Bold Italic" size="11.686956405639648" />
+         </font>
+      </Text>
+      <Button layoutX="568.0" layoutY="378.0" mnemonicParsing="false" onAction="#goto_signup" style="-fx-background-color: transparent;" text="signup" textFill="#0d00ff" />
+      <Label fx:id="invalidlogin" layoutX="492.0" layoutY="301.0" textFill="RED" />
+   </children>
+</Pane>
