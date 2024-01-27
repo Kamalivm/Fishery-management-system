@@ -1,0 +1,139 @@
+package com.example.fishery;
+
+import com.mongodb.client.MongoCursor;
+import javafx.scene.control.Label;
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
+import java.io.IOException;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import org.bson.Document;
+
+public class Controller1_login{
+
+    @FXML
+    private TextField passwordField;
+    @FXML
+    private TextField usernameField;
+    @FXML
+    private Label invalidlogin;
+    @FXML
+    private TextField firstname;
+    @FXML
+    private TextField lastname;
+    @FXML
+    private TextField spassword;
+    @FXML
+    private TextField emailid;
+
+    @FXML
+    void go_back_to_login(ActionEvent event) throws IOException{
+        HelloApplication.stage_var.setScene(HelloApplication.fish_vareity);
+    }
+    @FXML
+    void goto_fishvariety(ActionEvent event) throws IOException{
+
+        String user_id = usernameField.getText();
+        String Password = passwordField.getText();
+
+        if (user_id.isEmpty() && Password.isEmpty()) {
+            invalidlogin.setText("Invalid Login");
+
+        } else if (user_id.isEmpty() || Password.isEmpty()) {
+            invalidlogin.setText("Enter username and password");
+        }
+        else {
+            try (MongoClient mongoclient = new MongoClient("localhost", 27017)) {
+
+                MongoDatabase db = mongoclient.getDatabase("Fishery_management");
+                System.out.println(db.getName());
+                MongoCollection<Document> collection = db.getCollection("user");
+                MongoCursor<Document> iter = collection.find().iterator();
+
+                while (iter.hasNext()) {
+                    Document document = iter.next();
+                    String name = (String) document.get("username");
+                    String pass = (String) document.get("password");
+                    if(name.equals(user_id) && pass.equals(Password)){
+                        HelloApplication.stage_var.setScene(HelloApplication.fish_vareity);
+                        invalidlogin.setText("Invalid Login");
+                    }
+//                    if (Objects.equals(user_id, name) && Objects.equals(Password, pass)) {
+//                        invalidlogin.setText("");
+//                        HelloApplication.stage_var.setScene(HelloApplication.fish_vareity);
+//                    } else {
+//                        invalidlogin.setText("Invalid Login");
+//                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Task Failed Due TO ****** " + e);
+            }
+        }
+
+        }
+    public void go_to_fish_variety(ActionEvent event){
+//        HelloApplication.stage_var.setScene(HelloApplication.fish_vareity);
+
+        String fname = firstname.getText();
+        String lname = lastname.getText();
+        String pass = spassword.getText();
+        String email = emailid.getText();
+
+
+        if (fname.isEmpty() && lname.isEmpty() && pass.isEmpty() && email.isEmpty()) {
+            invalidlogin.setText("Invalid Login");
+
+        } else if (fname.isEmpty() || lname.isEmpty() || pass.isEmpty() || email.isEmpty()) {
+            invalidlogin.setText("Enter valid input");
+        }
+        else {
+            try (MongoClient mongoclient = new MongoClient("localhost", 27017)) {
+
+                MongoDatabase db = mongoclient.getDatabase("Fishery_management");
+                System.out.println(db.getName());
+                MongoCollection<Document> collection = db.getCollection("signup");
+                MongoCursor<Document> cur = collection.find().iterator();
+                Document dc = new Document();
+                dc.put("firstname",fname);
+                dc.put("lastname",lname);
+                dc.put("password",pass);
+                dc.put("email",email);
+                while (cur.hasNext()) {
+                    Document document = cur.next();
+                    String name1 = (String) document.get("firstname");
+                    String name2 = (String) document.get("lastname");
+                    String pword = (String) document.get("password");
+                    String mail  = (String) document.get("email");
+
+                    if(name1.equals(fname) && name2.equals(lname) && pword.equals(pass) && mail.equals(email)){
+                        invalidlogin.setText("Invalid Login");
+                    }
+                    else{
+                        collection.insertOne(dc);
+                        HelloApplication.stage_var.setScene(HelloApplication.fish_vareity);
+                    }
+//                    if (Objects.equals(user_id, name) && Objects.equals(Password, pass)) {
+//                        invalidlogin.setText("");
+//                        HelloApplication.stage_var.setScene(HelloApplication.fish_vareity);
+//                    } else {
+//                        invalidlogin.setText("Invalid Login");
+//                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Task Failed Due TO ****** " + e);
+            }
+        }
+
+    }
+    public void goto_login(ActionEvent event){
+        HelloApplication.stage_var.setScene(HelloApplication.login);
+    }
+    public void goto_signup(ActionEvent event){
+        HelloApplication.stage_var.setScene(HelloApplication.signup);
+
+        }
+    }
